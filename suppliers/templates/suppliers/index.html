@@ -20,7 +20,7 @@
     <form method="get" action="" class="d-flex ms-auto" style="width: 500px;">
         <div class="input-group">
             <input type="text" class="form-control" placeholder="Search Suppliers (ID/Name/Hardware)..." name="search" style="border-radius: 30px 0 0 30px;">
-            <button class="btn btn-secondary" type="submit" style="border-radius: 0 30px 30px 0;">Search</button>
+            <button class="btn btn-search" type="submit" style="border-radius: 0 30px 30px 0;">Search</button>
         </div>
     </form>
 </div>
@@ -65,14 +65,14 @@
                                         <td> 
                                             <form action="{% url 'supplier_edit' supplier.id %}" method="post" style="display:inline;"> 
                                                 {% csrf_token %}
-                                                <button type="submit" class="btn btn-danger btn-sm">Edit</button>
+                                                <button type="submit" class="btn btn-edit btn-sm">Edit</button>
                                             </form>
                                             
                                         </td>
                                         <td> 
                                             <form action="{% url 'delete_supplier' supplier.id %}" method="post" style="display:inline;"> 
                                                 {% csrf_token %}
-                                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                                <button type="submit" class="btn btn-delete btn-sm">Delete</button>
                                             </form>
                                             
                                         </td>

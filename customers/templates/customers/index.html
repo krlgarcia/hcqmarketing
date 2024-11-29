@@ -50,7 +50,7 @@
                                         <td> 
                                             <form action="{% url 'customer_edit' customer.id %}" method="post" style="display:inline;"> 
                                                 {% csrf_token %}
-                                                <button type="submit" class="btn btn-danger btn-sm">Edit</button>
+                                                <button type="submit" class="btn btn-edit btn-sm">Edit</button>
                                             </form>
                                             
                                         </td>
@@ -58,7 +58,7 @@
                                                 
                                             <form action="{% url 'delete_customer' customer.id %}" method="post" style="display:inline;">
                                                 {% csrf_token %}
-                                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                                <button type="submit" class="btn btn-delete btn-sm">Delete</button>
                                             </form>
 
                                         </td>
