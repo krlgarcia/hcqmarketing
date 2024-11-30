@@ -3,14 +3,33 @@ from django.shortcuts import HttpResponseRedirect
 from django.urls import reverse
 from .models import Product
 from django.shortcuts import render, get_object_or_404, redirect
-
-
 from .forms import ProductForm
+from django.contrib import messages
+from django.db.models import Q
 
 # Create your views here.
 def index(request):
     return render(request, 'products/index.html', {
         'products':Product.objects.all().order_by('id')
+    })
+
+def index(request):
+    search_query = request.GET.get('search', '')
+    if search_query:
+        products = Product.objects.filter(
+            Q(product_code__icontains=search_query) |
+            Q(product_name__icontains=search_query) |
+            Q(product_descript__icontains=search_query)
+        ).order_by('id')
+        results_count = products.count()
+        messages.info(request, f"{results_count} results found.")
+    else:
+        products = Product.objects.all().order_by('id')
+        results_count = 0
+
+    return render(request, 'products/index.html', {
+        'products': products,
+        'results_count': results_count 
     })
 
 def view_product(request, id):
