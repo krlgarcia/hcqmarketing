@@ -7,7 +7,7 @@
     <link href="{% static 'css/custom-styles.css' %}" rel="stylesheet">
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
 </head>
-<body class="d-flex flex-column min-vh-100">
+<body class="d-flex flex-column min-vh-100" style="background-color: #fff;">
     <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="{% url 'index' %}">HCQ MARKETING</a>
@@ -17,29 +17,18 @@
 
             <div class="collapse navbar-collapse" id="navbarColor01">
                 <ul class="navbar-nav me-auto">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Employees</a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="{% url 'employees_index' %}">Employees</a>
-                            <a class="dropdown-item" href="{% url 'add_employee' %}">New Employees</a>     
-                        </div>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'employees_index' %}active{% endif %}" href="{% url 'employees_index' %}">Employees</a>
                     </li>
-                    
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Suppliers</a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="{% url 'suppliers_index' %}">Suppliers</a>
-                            <a class="dropdown-item" href="{% url 'add_supplier' %}">New Supplier</a>     
-                        </div>
+            
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'suppliers_index' %}active{% endif %}" href="{% url 'suppliers_index' %}">Suppliers</a>
                     </li>
-
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Customers</a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="{% url 'customers_index' %}">Customers</a>
-                            <a class="dropdown-item" href="{% url 'add_customer' %}">New Customer</a>     
-                        </div>
+            
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'customers_index' %}active{% endif %}" href="{% url 'customers_index' %}">Customers</a>
                     </li>
+            
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Sales</a>
                         <div class="dropdown-menu">
@@ -48,31 +37,27 @@
                             <a class="dropdown-item" href="#">Sales Return</a>
                         </div>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Products</a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="{% url 'products_index' %}">Products</a>
-                            <a class="dropdown-item" href="{% url 'add_product' %}">New Product</a>     
-                        </div>
+
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'products_index' %}active{% endif %}" href="{% url 'products_index' %}">Products</a>
                     </li>
+            
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Purchases</a>
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="{% url 'purchases:purchase_index' %}">Purchases</a>
-                            <a class="dropdown-item" href="{% url 'purchases:add_purchase' %}">New Purchase</a>     
+                            <a class="dropdown-item" href="{% url 'purchases:add_purchase' %}">New Purchase</a>
                         </div>
                     </li>
-
-                    <!-- Add Inventory Dropdown -->
+            
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Inventory</a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="{% url 'inventory:inventory_index' %}">Inventory List</a>   
+                            <a class="dropdown-item" href="{% url 'inventory:inventory_index' %}">Inventory List</a>
                         </div>
                     </li>
-
                 </ul>
-            </div>
+            </div>            
         </div>   
     </nav>
 

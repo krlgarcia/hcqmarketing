@@ -3,7 +3,7 @@
     --bs-btn-bg: #C4D8FE !important;
     --bs-bg-opacity: 1 !important;
     --bs-btn-border-color: #C4D8FE !important;
-    --bs-btn-color: #000 !important; /* Dark text */
+    --bs-btn-color: #000 !important;
     border-radius: 20px;
 }
 .btn-edit:hover {
@@ -26,7 +26,19 @@
     --bs-btn-hover-color: #000 !important;
 }
 
-/* Add Button */
+.btn-add {
+    --bs-btn-bg: #E9BD78 !important;
+    --bs-bg-opacity: 1 !important;
+    --bs-btn-border-color: #E9BD78 !important;
+    --bs-btn-color: #000 !important;
+    border-radius: 20px;
+}
+.btn-add:hover {
+    --bs-btn-hover-bg: #D9A65A !important; /* Slightly darker shade */
+    --bs-btn-hover-border-color: #D9A65A !important;
+    --bs-btn-hover-color: #000 !important;
+}
+
 .btn-add-save {
     --bs-btn-bg: #5CB85C !important;
     --bs-bg-opacity: 1 !important;
@@ -40,7 +52,6 @@
     --bs-btn-hover-color: #000 !important;
 }
 
-/* Cancel Button */
 .btn-cancel {
     --bs-btn-bg: #E3E3E3 !important;
     --bs-bg-opacity: 1 !important;
@@ -54,7 +65,6 @@
     --bs-btn-hover-color: #000 !important;
 }
 
-/* Save Button */
 .btn-save {
     --bs-btn-bg: #E9BD78 !important;
     --bs-bg-opacity: 1 !important;
@@ -88,4 +98,10 @@
 .navbar .nav-item:hover .nav-link:hover {
     background-color: #E9BD78 !important; /* Custom background color for hover */
     --bs-nav-link-hover-color: #000 !important; /* Custom text color for hover */
+}
+
+.navbar .nav-item .nav-link.active {
+    background-color: #E9BD78 !important; /* Active background color */
+    color: #000 !important; /* Active text color */
+    border-radius: 20px !important; /* Ensure consistent rounded corners */
 }

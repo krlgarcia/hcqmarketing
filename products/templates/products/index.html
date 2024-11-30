@@ -11,12 +11,15 @@
 {% endif %}
 
 <div class="d-flex justify-content-between align-items-center m-3">
-    <h3 class="m-3">Products</h3>
+    <div class="d-flex align-items-center">
+        <h3 class="m-3">Products</h3>
+        <a href="{% url 'add_product' %}" class="btn btn-add btn-sm ms-2">Add Products</a>
+    </div>
         {% if message %}
     <div class="alert alert-info">
         {{ message }}
     </div>
-    {% endif %}
+        {% endif %}
     <form method="get" action="" class="d-flex ms-auto" style="width: 500px;">
         <div class="input-group">
             <input type="text" class="form-control" placeholder="Search Products (Code/Name/Description)..." name="search" style="border-radius: 30px 0 0 30px;">
