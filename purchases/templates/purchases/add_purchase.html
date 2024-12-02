@@ -50,9 +50,6 @@
                         <label for="id_status" class="form-label">Status</label>
                         <select name="status" id="id_status" class="form-select">
                             <option value="Pending" selected>Pending</option>
-                            <option value="Partially Delivered">Partially Delivered</option>
-                            <option value="Delivered">Delivered</option>
-                            <option value="Cancelled">Cancelled</option>
                         </select>
                     </div>
 
@@ -95,14 +92,14 @@
 
                                 <!-- Delete Button -->
                                 <div class="col-md-1 d-flex align-items-end">
-                                    <button type="button" class="btn btn-danger btn-sm delete-row">X</button>
+                                    <button type="button" class="btn btn-delete btn-sm delete-row">X</button>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- Add More Products Button -->
-                    <button type="button" id="add-more" class="btn btn-primary mb-3">Add More Products</button>
+                    <button type="button" id="add-more" class="btn btn-add mb-3">Add More Products</button>
 
                     <!-- Total Price Calculation -->
                     <div class="mb-3">
@@ -112,7 +109,7 @@
 
                     <!-- Submit Button -->
                     <div class="mb-3 text-center">
-                        <button type="submit" class="btn btn-success">Save Purchase</button>
+                        <button type="submit" class="btn btn-add-save">Save Purchase</button>
                     </div>
                 </form>
             </div>
@@ -189,7 +186,7 @@ document.getElementById("add-more").addEventListener("click", function() {
                 <input type="number" name="form-${itemCount}-price" id="id_form-${itemCount}-price" class="form-control" readonly>
             </div>
             <div class="col-md-1 d-flex align-items-end">
-                <button type="button" class="btn btn-danger btn-sm delete-row">X</button>
+                <button type="button" class="btn btn-delete btn-sm delete-row">X</button>
             </div>
         </div>
     `;

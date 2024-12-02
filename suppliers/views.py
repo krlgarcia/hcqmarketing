@@ -15,7 +15,7 @@ def index(request):
             Q(supplier_hardware__icontains=search_query)
         ).order_by('id')
         results_count = suppliers.count()
-        messages.info(request, f"{results_count} results found.")
+        messages.info(request, f"{results_count} result(s) found for '{search_query}'.")
     else:
         suppliers = Supplier.objects.all().order_by('id')
         results_count = 0

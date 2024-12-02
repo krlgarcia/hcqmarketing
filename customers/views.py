@@ -16,7 +16,7 @@ def index(request):
             Q(customer_hardware__icontains=search_query)
         ).order_by('id')
         results_count = customers.count()
-        messages.info(request, f"{results_count} results found.")
+        messages.info(request, f"{results_count} result(s) found for '{search_query}'.")
     else:
         customers = Customer.objects.all().order_by('id')
         results_count = 0

@@ -41,21 +41,15 @@
                     <li class="nav-item">
                         <a class="nav-link {% if request.resolver_match.url_name == 'products_index' %}active{% endif %}" href="{% url 'products_index' %}">Products</a>
                     </li>
-            
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Purchases</a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="{% url 'purchases:purchase_index' %}">Purchases</a>
-                            <a class="dropdown-item" href="{% url 'purchases:add_purchase' %}">New Purchase</a>
-                        </div>
+
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'purchase_index' %}active{% endif %}" href="{% url 'purchases:purchase_index' %}">Purchases</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'inventory_index' %}active{% endif %}" href="{% url 'inventory:inventory_index' %}">Inventory</a>
                     </li>
             
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Inventory</a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="{% url 'inventory:inventory_index' %}">Inventory List</a>
-                        </div>
-                    </li>
                 </ul>
             </div>            
         </div>   

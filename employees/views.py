@@ -14,7 +14,7 @@ def employee_index(request):
             Q(id__icontains=search_query) | Q(full_name__icontains=search_query)
         ).order_by('id')
         results_count = employees.count()
-        messages.info(request, f"{results_count} results found.")
+        messages.info(request, f"{results_count} result(s) found for '{search_query}'.")
     else:
         employees = Employees.objects.all().order_by('id')
         results_count = 0 

@@ -62,7 +62,7 @@
                 {% endif %}
 
                 <!-- Button to trigger modal for editing status -->
-                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editStatusModal">
+                <button class="btn btn-edit" data-bs-toggle="modal" data-bs-target="#editStatusModal">
                     Edit Status
                 </button>
             </div>
@@ -91,7 +91,7 @@
                             <option value="Cancelled" {% if purchase.status == "Cancelled" %}selected{% endif %}>Cancelled</option>
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-success">Update Status</button>
+                    <button type="submit" class="btn btn-add-save">Update Status</button>
                 </form>
             </div>
         </div>

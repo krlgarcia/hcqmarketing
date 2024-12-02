@@ -22,7 +22,7 @@ def index(request):
             Q(product_descript__icontains=search_query)
         ).order_by('id')
         results_count = products.count()
-        messages.info(request, f"{results_count} results found.")
+        messages.info(request, f"{results_count} result(s) found for '{search_query}'.")
     else:
         products = Product.objects.all().order_by('id')
         results_count = 0
