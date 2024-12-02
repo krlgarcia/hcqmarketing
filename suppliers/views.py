@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, HttpResponseRedirect, get_object_or_404
+from django.shortcuts import HttpResponseRedirect
 from django.urls import reverse
 from .models import Supplier
 from .forms import SupplierForm
@@ -40,6 +41,35 @@ def add(request):
                 'form': SupplierForm(),  # Reset the form after successful submission
                 'success': True  # Indicate success
             })
+        
+            new_first_name = form.cleaned_data['first_name']
+            new_last_name = form.cleaned_data['last_name']
+            new_supplier_hardware = form.cleaned_data['supplier_hardware']
+            new_email = form.cleaned_data['email']
+            new_address = form.cleaned_data['address']
+            new_contact_num = form.cleaned_data['contact_num']
+            new_dateStart = form.cleaned_data['dateStart']
+            new_dateEdit = form.cleaned_data['dateEdit']
+            new_status = form.cleaned_data['status']
+
+            new_supplier = Supplier(
+                first_name = new_first_name,
+                last_name = new_last_name,
+                supplier_hardware = new_supplier_hardware,
+                email = new_email,
+                address = new_address,
+                contact_num = new_contact_num,
+                dateStart = new_dateStart,
+                dateEdit = new_dateEdit,
+                status = new_status
+            )
+
+            new_supplier.save()
+            return render(request, 'suppliers/add.html',{
+                'form' :SupplierForm(), 
+                'success': True
+            })
+        
         else:
             # If the form is not valid, return it with errors
             return render(request, 'suppliers/add.html', {
