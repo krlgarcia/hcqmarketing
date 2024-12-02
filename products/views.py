@@ -9,11 +9,6 @@ from django.db.models import Q
 
 # Create your views here.
 def index(request):
-    return render(request, 'products/index.html', {
-        'products':Product.objects.all().order_by('id')
-    })
-
-def index(request):
     search_query = request.GET.get('search', '')
     if search_query:
         products = Product.objects.filter(
