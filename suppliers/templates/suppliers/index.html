@@ -3,10 +3,13 @@
 {% block body %}
 
 {% if messages %}
-<div class="alert alert-success">
-    {% for message in messages %}
-        {{ message }}
-    {% endfor %}
+<div class="d-flex justify-content-center mt-3">
+    <div class="alert alert-success alert-dismissible fade show text-center" style="max-width: 600px; width: 100%;" role="alert">
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
 </div>
 {% endif %}
 
