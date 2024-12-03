@@ -61,8 +61,8 @@
                                         <td><a href="{% url 'inventory:product_detail' inventory.product.id %}">{{ inventory.product.product_code }}</a></td>
                                         <td>{{ inventory.product.product_name }}</td>
                                         <td>{{ inventory.product.product_descript }}</td>
-                                        <td>{{ inventory.product.product_price }}</td>
-                                        <td>{{ inventory.product.purchase_price }}</td>  <!-- Display Purchase Price -->
+                                        <td>₱{{ inventory.product.product_price }}</td>
+                                        <td>₱{{ inventory.product.purchase_price }}</td>  <!-- Display Purchase Price -->
                                         <td>
                                             {% if inventory.product.is_serialized %}
                                                 {{ inventory.serialized_items.count }} serialized items

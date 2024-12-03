@@ -11,4 +11,6 @@ urlpatterns = [
     path('<int:purchase_id>/add_invoice/', views.add_invoice, name='add_invoice'),
     path('returns/', views.purchase_return_list, name='purchase_return_list'),
     path('returns/create/', views.create_purchase_return, name='create_purchase_return'),
+    path('export_csv/', views.export_purchases_csv, name='export_purchases_csv'),
+    path('export_pdf/', views.export_purchases_pdf, name='export_purchases_pdf'),
 ]

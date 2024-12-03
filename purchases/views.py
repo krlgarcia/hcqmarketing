@@ -13,10 +13,11 @@ from .models import Invoice
 from .forms import InvoiceForm
 from .forms import PurchaseReturnForm, PurchaseReturnItemForm
 from django.db.models import Q
-# In views.py
-
 from .models import PurchaseReturn, PurchaseReturnItem
 from .forms import PurchaseReturnForm, PurchaseReturnItemFormSet
+from django.http import HttpResponse
+from reportlab.pdfgen import canvas
+import csv
 
 def purchase_return_list(request):
     returns = PurchaseReturn.objects.all().order_by('-return_date')
@@ -309,6 +310,79 @@ def purchase_index(request):
         'results_count': results_count,
         'search_query': search_query
     })
+
+def export_purchases_csv(request):
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="purchase_records.csv"'
+
+    writer = csv.writer(response)
+
+    writer.writerow([
+        'Purchase Code', 'Supplier', 'Date', 'Product Count',
+        'Total Cost', 'Status'
+    ])
+
+    purchases = Purchase.objects.all()
+
+    for purchase in purchases:
+        writer.writerow([
+            purchase.purchase_code,
+            purchase.supplier.supplier_hardware if purchase.supplier else "N/A",
+            purchase.date.strftime('%Y-%m-%d %H:%M:%S'),
+            purchase.items.count(),
+            f'{purchase.total_cost:.2f}',
+            purchase.status
+        ])
+
+    return response
+
+def export_purchases_pdf(request):
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="purchase_records.pdf"'
+
+    p = canvas.Canvas(response)
+
+    p.setFont("Helvetica-Bold", 16)
+    p.drawString(200, 800, "Purchase Records")
+    y = 760
+
+    p.setFont("Helvetica-Bold", 12)
+    p.drawString(50, y, "Purchase Code")
+    p.drawString(150, y, "Supplier")
+    p.drawString(300, y, "Date")
+    p.drawString(400, y, "Product Count")
+    p.drawString(500, y, "Total Cost")
+    p.drawString(600, y, "Status")
+    y -= 20
+
+    purchases = Purchase.objects.all()
+
+    p.setFont("Helvetica", 10)
+    for purchase in purchases:
+        if y < 50:
+            p.showPage()
+            y = 800
+            p.setFont("Helvetica-Bold", 12)
+            p.drawString(50, y, "Purchase Code")
+            p.drawString(150, y, "Supplier")
+            p.drawString(300, y, "Date")
+            p.drawString(400, y, "Product Count")
+            p.drawString(500, y, "Total Cost")
+            p.drawString(600, y, "Status")
+            y -= 20
+            p.setFont("Helvetica", 10)
+
+        p.drawString(50, y, purchase.purchase_code)
+        p.drawString(150, y, purchase.supplier.supplier_hardware if purchase.supplier else "N/A")
+        p.drawString(300, y, purchase.date.strftime('%Y-%m-%d %H:%M:%S'))
+        p.drawString(400, y, str(purchase.items.count()))
+        p.drawString(500, y, f"{purchase.total_cost:.2f}")
+        p.drawString(600, y, purchase.status)
+        y -= 20
+
+    p.showPage()
+    p.save()
+    return response
 
 def purchase_detail(request, purchase_id):
     # Fetch the purchase object using the purchase_id
