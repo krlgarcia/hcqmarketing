@@ -318,7 +318,7 @@ def export_purchases_csv(request):
     writer = csv.writer(response)
 
     writer.writerow([
-        'Purchase Code', 'Supplier', 'Date', 'Product Count',
+        'Purchase Code', 'Supplier', 'Date', 'Product Quantity',
         'Total Cost', 'Status'
     ])
 
@@ -330,7 +330,7 @@ def export_purchases_csv(request):
             purchase.supplier.supplier_hardware if purchase.supplier else "N/A",
             purchase.date.strftime('%Y-%m-%d %H:%M:%S'),
             purchase.items.count(),
-            f'{purchase.total_cost:.2f}',
+            f'PHP{purchase.total_cost:.2f}',
             purchase.status
         ])
 
@@ -342,41 +342,41 @@ def export_purchases_pdf(request):
 
     p = canvas.Canvas(response)
 
-    p.setFont("Helvetica-Bold", 16)
+    p.setFont("Helvetica-Bold", 12)
     p.drawString(200, 800, "Purchase Records")
     y = 760
 
-    p.setFont("Helvetica-Bold", 12)
+    p.setFont("Helvetica-Bold", 9)
     p.drawString(50, y, "Purchase Code")
     p.drawString(150, y, "Supplier")
     p.drawString(300, y, "Date")
-    p.drawString(400, y, "Product Count")
+    p.drawString(400, y, "Product Quantity")
     p.drawString(500, y, "Total Cost")
     p.drawString(600, y, "Status")
     y -= 20
 
     purchases = Purchase.objects.all()
 
-    p.setFont("Helvetica", 10)
+    p.setFont("Helvetica", 7.5)
     for purchase in purchases:
         if y < 50:
             p.showPage()
             y = 800
-            p.setFont("Helvetica-Bold", 12)
+            p.setFont("Helvetica-Bold", 9)
             p.drawString(50, y, "Purchase Code")
             p.drawString(150, y, "Supplier")
             p.drawString(300, y, "Date")
-            p.drawString(400, y, "Product Count")
+            p.drawString(400, y, "Product Quantity")
             p.drawString(500, y, "Total Cost")
             p.drawString(600, y, "Status")
             y -= 20
-            p.setFont("Helvetica", 10)
+            p.setFont("Helvetica", 7.5)
 
         p.drawString(50, y, purchase.purchase_code)
         p.drawString(150, y, purchase.supplier.supplier_hardware if purchase.supplier else "N/A")
         p.drawString(300, y, purchase.date.strftime('%Y-%m-%d %H:%M:%S'))
         p.drawString(400, y, str(purchase.items.count()))
-        p.drawString(500, y, f"{purchase.total_cost:.2f}")
+        p.drawString(500, y, f"PHP{purchase.total_cost:.2f}")
         p.drawString(600, y, purchase.status)
         y -= 20
 
